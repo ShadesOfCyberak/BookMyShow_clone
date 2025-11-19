@@ -273,7 +273,7 @@ const generateSampleShows = async (theaters) => {
 const seedDatabase = async () => {
   try {
     // Connect to MongoDB
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/movieflix');
+    await mongoose.connect('mongodb+srv://ajaykumarvp2_db_user:ajaykumar@cluster0.6m7swu9.mongodb.net/?appName=Cluster0');//process.env.MONGODB_URI || 'mongodb://localhost:27017/movieflix');
     console.log('Connected to MongoDB');
 
     // Clear existing data

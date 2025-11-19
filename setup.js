@@ -61,7 +61,7 @@ PORT=5000
 NODE_ENV=development
 
 # MongoDB Configuration
-MONGODB_URI=mongodb://localhost:27017/movieflix
+MONGODB_URI=mongodb+srv://ajaykumarvp2_db_user:ajaykumar@cluster0.6m7swu9.mongodb.net/?appName=Cluster0 #mongodb://localhost:27017/movieflix
 
 # JWT Configuration
 JWT_SECRET=your_jwt_secret_key_here_change_in_production
