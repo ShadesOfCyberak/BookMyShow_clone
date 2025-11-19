@@ -22,11 +22,15 @@ app.use(express.json());
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL || 'http://localhost:3000',
+    process.env.VERCEL_URL,
     'https://ac1df60f7821.ngrok-free.app',
+    /\.vercel\.app$/,
     /\.ngrok-free\.app$/,
     /\.ngrok\.io$/
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Connect to MongoDB
@@ -61,7 +65,21 @@ app.use('/api/events', eventRoutes);
 
 // Basic route for testing
 app.get('/', (req, res) => {
-  res.send('BookMyShow Clone API is running');
+  res.json({
+    message: 'BookMyShow Clone API is running',
+    environment: process.env.NODE_ENV,
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Health check route
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'OK',
+    environment: process.env.NODE_ENV,
+    mongodb: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected',
+    timestamp: new Date().toISOString()
+  });
 });
 
 // Error handling middleware
