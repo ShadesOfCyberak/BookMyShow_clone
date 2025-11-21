@@ -19,6 +19,7 @@ import {
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
+const url = import.meta.env.VITE_API_URL;
 
 const BookingConfirmationPage = () => {
   const { bookingId } = useParams();
@@ -34,7 +35,7 @@ const BookingConfirmationPage = () => {
   const fetchBookingDetails = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/bookings/ticket/${bookingId}`
+        `${url}/bookings/ticket/${bookingId}`
       );
       
       if (!response.ok) {

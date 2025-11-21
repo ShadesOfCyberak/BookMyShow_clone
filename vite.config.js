@@ -9,13 +9,13 @@ export default defineConfig({
     open: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://bookmyshow-clone-ophd.onrender.com', //'http://localhost:5000',
         changeOrigin: true,
         secure: false,
       },
     },
     allowedHosts: [
-      'ac1df60f7821.ngrok-free.app'
+      'book-my-show-clone-mu.vercel.app'
     ]
   },
   build: {

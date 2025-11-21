@@ -23,6 +23,8 @@ import BookingSummary from '../components/booking/BookingSummary';
 // Store
 import useAuthStore from '../store/authStore';
 
+const url = import.meta.env.VITE_API_URL;
+
 const BookingPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
@@ -63,7 +65,7 @@ const BookingPage = () => {
       // Fetch theaters with shows for this movie
       try {
         const theatersResponse = await fetch(
-          `http://localhost:5000/api/theaters?city=${city}&movieId=${movieId}`,
+          `${url}/theaters?city=${city}&movieId=${movieId}`,
           {
             headers: isAuthenticated ? {
               'Authorization': `Bearer ${localStorage.getItem('auth-token')}`
@@ -149,7 +151,7 @@ const BookingPage = () => {
     try {
       setBookingLoading(true);
       
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch(`${url}/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

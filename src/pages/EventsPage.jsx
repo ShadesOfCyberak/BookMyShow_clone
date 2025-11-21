@@ -25,6 +25,8 @@ import {
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
+const url = import.meta.env.VITE_API_URL;
+
 const EventsPage = () => {
   const theme = useTheme();
   const navigate = useNavigate();
@@ -51,7 +53,7 @@ const EventsPage = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/events/categories');
+      const response = await fetch(`${url}/events/categories`);
       const categoriesData = await response.json();
       setCategories(categoriesData);
     } catch (error) {
@@ -71,7 +73,7 @@ const EventsPage = () => {
         ...(filters.search && { search: filters.search })
       });
 
-      const response = await fetch(`http://localhost:5000/api/events?${queryParams}`);
+      const response = await fetch(`${url}/events?${queryParams}`);
       const data = await response.json();
       
       setEvents(data.events);
